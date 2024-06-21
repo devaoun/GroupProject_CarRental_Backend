@@ -10,4 +10,12 @@ authController.register = async(req , res , next) => {
     }
 }
 
+authController.login = async(req,res,next) => {
+    try {
+        res.json({message : 'hello login'})
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = authController
