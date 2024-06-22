@@ -5,4 +5,6 @@ const adminService = {}
 adminService.findAdminByUsername = (username) => prisma.admins.findUnique({where : {username}})
 adminService.createAdmin = (data) => prisma.admins.create({data})
 
+
+
 module.exports = adminService
