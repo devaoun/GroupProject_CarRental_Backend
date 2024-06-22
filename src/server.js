@@ -7,6 +7,7 @@ const authRouter = require("./routes/auth-route");
 const limiter = require("./middlewares/rate-limit");
 const branchesRouter = require("./routes/branches-route");
 const carTypeRouter = require("./routes/carType-route");
+const carRouter = require("./routes/car-route");
 const app = express();
 
 app.use(cors());
@@ -17,6 +18,7 @@ app.use(limiter);
 app.use("/auth", authRouter);
 app.use("/branches", branchesRouter);
 app.use("/carType", carTypeRouter);
+app.use("/car",carRouter)
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
