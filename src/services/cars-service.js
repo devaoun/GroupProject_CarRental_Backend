@@ -54,6 +54,14 @@ carsService.getCarsAvailable = (data) => {
   }
 
   */
+
+carsService.findExistingCar = (licensePlate) =>
+  prisma.cars.findUnique({
+    where: {
+      licensePlate: licensePlate,
+    },
+  });
+
 carsService.createCar = (data) => prisma.cars.create({ data });
 
 module.exports = carsService;

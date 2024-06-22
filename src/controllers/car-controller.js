@@ -1,4 +1,5 @@
 const carsService = require("../services/cars-service");
+const createError = require("../utils/createError");
 
 const carController = {};
 
@@ -14,6 +15,7 @@ carController.getAllCarsAvailable = async (req, res, next) => {
     carModelId: +carModelId,
   };
 
+  console.log(data);
   try {
     const carsAvailable = await carsService.getCarsAvailable(data);
 
@@ -32,6 +34,16 @@ carController.createCar = async (req, res, next) => {
   };
 
   try {
+    const existingCar = await carsService.findExistingCar(data.licensePlate);
+
+    if (existingCar) {
+      createError({
+        message: "License plate already exists",
+        statusCode: 400,
+        field: "licensePlate",
+      });
+    }
+
     const newCar = await carsService.createCar(data);
     res.status(201).json(newCar);
   } catch (error) {
