@@ -14,16 +14,17 @@ enum CarStatus {
 }
 
 enum BookingStatus {
-  pending
   confirmed
   cancelled
 }
 
 model Admins {
-  id       Int     @id @default(autoincrement())
-  username String  @unique
-  password String  @db.VarChar(15)
-  isActive Boolean @default(true)
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String   @db.VarChar(15)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @updatedAt @db.Timestamp(0)
 }
 
 model Customers {
@@ -36,6 +37,8 @@ model Customers {
   address       String?
   driverLicense String     @unique
   totalPoints   Int        @default(0)
+  createdAt     DateTime   @default(now()) @db.Timestamp(0)
+  updatedAt     DateTime   @default(now()) @updatedAt @db.Timestamp(0)
   Bookings      Bookings[]
 }
 
@@ -54,6 +57,7 @@ model Branches {
 model CarTypes {
   carTypeId   Int         @id @default(autoincrement())
   carTypeName String
+  pricePerDay Float
   CarModels   CarModels[]
 }
 
@@ -84,10 +88,11 @@ model Cars {
   carModelId   Int
   licensePlate String     @unique
   status       CarStatus  @default(available)
-  pricePerDay  Float
   branchId     Int?
   seatNumber   Int
   use_date     DateTime?
+  createdAt    DateTime   @default(now()) @db.Timestamp(0)
+  updatedAt    DateTime   @updatedAt @db.Timestamp(0)
   CarModel     CarModels  @relation(fields: [carModelId], references: [carModelId])
   Branch       Branches?  @relation(fields: [branchId], references: [branchId])
   Bookings     Bookings[]
@@ -100,11 +105,13 @@ model Bookings {
   bookingDate       DateTime
   startDate         DateTime
   endDate           DateTime
+  pickDropTime      String?
   totalAmount       Float
   pickupLocationId  Int
   dropoffLocationId Int
-  status            BookingStatus @default(pending)
-  paymentDeadline   DateTime?
+  status            BookingStatus @default(confirmed)
+  createdAt         DateTime      @default(now()) @db.Timestamp(0)
+  updatedAt         DateTime      @updatedAt @db.Timestamp(0)
   Customer          Customers     @relation(fields: [customerId], references: [customerId])
   Car               Cars          @relation(fields: [carId], references: [carId])
   PickupLocation    Branches      @relation(name: "PickupLocation", fields: [pickupLocationId], references: [branchId])
@@ -112,19 +119,15 @@ model Bookings {
   Payment           Payments?
 }
 
-model PaymentMethods {
-  paymentMethodId Int        @id @default(autoincrement())
-  methodName      String
-  Payments        Payments[]
-}
-
 model Payments {
-  paymentId       Int            @id @default(autoincrement())
-  bookingId       Int            @unique
-  paymentDate     DateTime
-  amount          Float
-  paymentMethodId Int
-  slipImageUrl    String?
-  Booking         Bookings       @relation(fields: [bookingId], references: [bookingId])
-  PaymentMethod   PaymentMethods @relation(fields: [paymentMethodId], references: [paymentMethodId])
+  paymentId     Int      @id @default(autoincrement())
+  bookingId     Int      @unique
+  paymentDate   DateTime
+  amount        Float
+  orderId       String // Used with Stripe
+  sessionId     String // Stripe checkout session id
+  paymentStatus String // Status from Stripe
+  createdAt     DateTime @default(now()) @db.Timestamp(0)
+  updatedAt     DateTime @updatedAt @db.Timestamp(0)
+  Booking       Bookings @relation(fields: [bookingId], references: [bookingId])
 }
