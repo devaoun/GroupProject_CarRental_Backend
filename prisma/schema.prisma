@@ -63,6 +63,7 @@ model CarModels {
   brand        String
   model        String
   color        String
+  price        Decimal     @db.Decimal(10, 2)
   transmission String
   fuel         String
   seats        Int
@@ -93,37 +94,37 @@ model Cars {
 }
 
 model Bookings {
-  bookingId          Int           @id @default(autoincrement())
-  customerId         Int
-  carId              Int
-  bookingDate        DateTime
-  startDate          DateTime
-  endDate            DateTime
-  totalAmount        Float
+  bookingId         Int           @id @default(autoincrement())
+  customerId        Int
+  carId             Int
+  bookingDate       DateTime
+  startDate         DateTime
+  endDate           DateTime
+  totalAmount       Float
   pickupLocationId  Int
   dropoffLocationId Int
-  status              BookingStatus @default(pending)
-  paymentDeadline    DateTime?
-  Customer            Customers     @relation(fields: [customerId], references: [customerId])
-  Car                 Cars          @relation(fields: [carId], references: [carId])
-  PickupLocation      Branches      @relation(name: "PickupLocation", fields: [pickupLocationId], references: [branchId])
-  DropoffLocation     Branches      @relation(name: "DropoffLocation", fields: [dropoffLocationId], references: [branchId])
-  Payment             Payments?
+  status            BookingStatus @default(pending)
+  paymentDeadline   DateTime?
+  Customer          Customers     @relation(fields: [customerId], references: [customerId])
+  Car               Cars          @relation(fields: [carId], references: [carId])
+  PickupLocation    Branches      @relation(name: "PickupLocation", fields: [pickupLocationId], references: [branchId])
+  DropoffLocation   Branches      @relation(name: "DropoffLocation", fields: [dropoffLocationId], references: [branchId])
+  Payment           Payments?
 }
 
 model PaymentMethods {
   paymentMethodId Int        @id @default(autoincrement())
-  methodName       String
+  methodName      String
   Payments        Payments[]
 }
 
 model Payments {
-  paymentId        Int            @id @default(autoincrement())
-  bookingId        Int            @unique
-  paymentDate      DateTime
-  amount            Float
+  paymentId       Int            @id @default(autoincrement())
+  bookingId       Int            @unique
+  paymentDate     DateTime
+  amount          Float
   paymentMethodId Int
   slipImageUrl    String?
-  Booking           Bookings       @relation(fields: [bookingId], references: [bookingId])
-  PaymentMethod     PaymentMethods @relation(fields: [paymentMethodId], references: [paymentMethodId])
+  Booking         Bookings       @relation(fields: [bookingId], references: [bookingId])
+  PaymentMethod   PaymentMethods @relation(fields: [paymentMethodId], references: [paymentMethodId])
 }
