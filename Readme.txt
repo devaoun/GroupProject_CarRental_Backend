@@ -1,12 +1,16 @@
 ========== .env file ==========
 
-PORT = ....
+PORT=8888
 
 DATABASE_URL="mysql://avnadmin:AVNS_Mp-kz4u5_DM1rjBg2sl@mysql-23818dbc-narong-125f.d.aivencloud.com:13411/stella_car_rental_project"
 
-CLOUDINARY_NAME = ....
-CLOUDINARY_API_KEY = ....
-CLOUDINARY_API_SECRET = ....
+JWT_SECRET=HELLOHACKERS
+
+CLOUDINARY_NAME=ds0ybfxj8
+CLOUDINARY_API_KEY=472629573342423
+CLOUDINARY_API_SECRET=IvReuEmMRvfdE_NowNxDPLwD634
+
+
 
 ==========================
 
