@@ -6,12 +6,18 @@ customerService.findCustomerByEmail = (email) =>
   prisma.customers.findUnique({ where: { email } });
 
 customerService.findCustomerById = (id) =>
-  prisma.user.findUnique({
+  prisma.customers.findFirst({
     where: {
-      id,
+      customerId: id,
     },
   });
 
 customerService.createCustomer = (data) => prisma.customers.create({ data });
+
+customerService.updateCustomerInfo = (id, data) =>
+  prisma.customers.updateMany({
+    data: data,
+    where: { customerId: id },
+  });
 
 module.exports = customerService;

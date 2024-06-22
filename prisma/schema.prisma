@@ -100,7 +100,6 @@ model Bookings {
   bookingId         Int           @id @default(autoincrement())
   customerId        Int
   carId             Int
-  bookingDate       DateTime
   startDate         DateTime
   endDate           DateTime
   pickDropTime      String?
@@ -114,7 +113,7 @@ model Bookings {
   Car               Cars          @relation(fields: [carId], references: [carId])
   PickupLocation    Branches      @relation(name: "PickupLocation", fields: [pickupLocationId], references: [branchId])
   DropoffLocation   Branches      @relation(name: "DropoffLocation", fields: [dropoffLocationId], references: [branchId])
-  Payment           Payments?
+  Payment           Payments[]
 }
 
 model Payments {

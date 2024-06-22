@@ -1,5 +1,9 @@
 const createError = require("../utils/createError");
-const { registerSchema, loginSchema } = require("../validator/auth-validator");
+const {
+  registerSchema,
+  loginSchema,
+  infoSchema,
+} = require("../validator/auth-validator");
 
 const validator = {};
 
@@ -27,6 +31,19 @@ validator.login = (req, res, next) => {
     });
   }
   req.input = value;
+  next();
+};
+
+validator.updateCustomer = (req, res, next) => {
+  const { value, error } = infoSchema.validate(req.body);
+  if (error) {
+    createError({
+      message: error.details[0].message,
+      statusCode: 400,
+    });
+  }
+  req.input = value;
+
   next();
 };
 
