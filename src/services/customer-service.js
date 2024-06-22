@@ -1,8 +1,17 @@
-const prisma = require("../model/prisma")
+const prisma = require("../model/prisma");
 
+const customerService = {};
 
-const customerService = {}
+customerService.findCustomerByEmail = (email) =>
+  prisma.customers.findUnique({ where: { email } });
 
-customerService.findCustomerByEmail = (email) => prisma.customers.findUnique({where : {email}})
+customerService.findCustomerById = (id) =>
+  prisma.user.findUnique({
+    where: {
+      id,
+    },
+  });
 
-module.exports = customerService
+customerService.createCustomer = (data) => prisma.customers.create({ data });
+
+module.exports = customerService;
