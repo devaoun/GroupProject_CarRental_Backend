@@ -30,6 +30,6 @@ exports.adminRegisterSchema = Joi.object({
 })
 
 exports.adminLoginSchema = Joi.object({
-  email: Joi.string().required(),
+  username: Joi.string().required(),
   password: Joi.string().required(),
 })
