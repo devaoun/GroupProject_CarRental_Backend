@@ -32,6 +32,8 @@ exports.infoSchema = Joi.object({
   confirmPassword: Joi.string().required().valid(Joi.ref("password")).strip(),
 });
 
+//[[[[[[[[[[[[[[[[[[[[[[[ ADMIN ]]]]]]]]]]]]]]]]]]]]]]]
+
 exports.adminRegisterSchema = Joi.object({
   username: Joi.string().required().trim(),
   password: Joi.string()
@@ -44,4 +46,5 @@ exports.adminLoginSchema = Joi.object({
   username: Joi.string().required(),
   password: Joi.string().required(),
 })
+
 

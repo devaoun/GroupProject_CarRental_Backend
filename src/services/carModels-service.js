@@ -11,4 +11,6 @@ carModelsService.getCarModelByCarTypeId = (carTypeId) =>
     },
   });
 
+carModelsService.createCarModels = (data) => prisma.carModels.create({data})
+
 module.exports = carModelsService;
