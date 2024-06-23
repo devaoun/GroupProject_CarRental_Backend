@@ -1,7 +1,12 @@
+const bookingService = require("../services/booking-service");
+const customerService = require("../services/customer-service");
 const paymentService = require("../services/payment-service");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const endpointSecret = process.env.STRIPE_ENDPOINT_SECRET;
 const { v4: uuidv4 } = require("uuid");
+const sendDetailedEmail = require("../utils/email-notification");
+const carsService = require("../services/cars-service");
+const branchesService = require("../services/branches-service");
 
 const paymentController = {};
 
@@ -22,16 +27,57 @@ paymentController.webhook = async (request, response) => {
     case "checkout.session.completed": {
       const session = event.data.object;
 
+      console.log(session);
+
       // update status กลับเข้าไปใน database หลังจากลูกค้าจ่ายแล้ว
       const sessionId = session.id;
       const paymentStatus = session.status;
 
-      console.log(sessionId, paymentStatus);
+      await paymentService.updatePaymentStatus(sessionId, paymentStatus);
 
-      const result = await paymentService.updatePaymentStatus(
-        sessionId,
-        paymentStatus
+      // add reward points
+
+      // find payment detail for bookingId and amount
+      const paymentDetail = await paymentService.findPaymentBySessionId(
+        sessionId
+      ); // find Booking detail for customerId
+
+      const bookingDetail = await bookingService.findBookingByBookingId(
+        paymentDetail.bookingId
       );
+
+      const customerId = bookingDetail.customerId;
+      const totalAmount = paymentDetail.amount;
+      const rewardPoints = Math.floor(totalAmount / 100);
+
+      await customerService.addRewardPoints(customerId, rewardPoints);
+      // find car detail from car id
+      const carDetail = await carsService.findCarByCarId(bookingDetail.carId);
+      // find customer detail from customer id
+      const customerDetail = await customerService.findCustomerById(customerId);
+      // pickup and dropOff Location from booking id
+      const pickupLocation = await branchesService.findLocation(
+        bookingDetail.pickupLocationId
+      );
+      const dropOffLocation = await branchesService.findLocation(
+        bookingDetail.dropoffLocationId
+      );
+
+      // Email notification
+
+      await sendDetailedEmail(
+        customerDetail.email,
+        `${customerDetail.firstName} ${customerDetail.lastName}`,
+        bookingDetail.bookingId,
+        `${carDetail.CarModel.brand} ${carDetail.CarModel.model}`,
+        `${bookingDetail.startDate}`,
+        `${bookingDetail.endDate}`,
+        bookingDetail.pickDropTime,
+        pickupLocation.branchName,
+        dropOffLocation.branchName,
+        totalAmount
+      );
+
       break;
     }
   }

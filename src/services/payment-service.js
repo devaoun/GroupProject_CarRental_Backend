@@ -11,4 +11,7 @@ paymentService.updatePaymentStatus = (sessionId, paymentStatus) =>
 paymentService.saveOrderDataForPayment = (data) =>
   prisma.payments.create({ data });
 
+paymentService.findPaymentBySessionId = (sessionId) =>
+  prisma.payments.findFirst({ where: { sessionId: sessionId } });
+
 module.exports = paymentService;

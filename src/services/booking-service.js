@@ -7,11 +7,18 @@ bookingService.findBookingByCustomerId = (id) =>
     where: { customerId: id },
   });
 
+
 bookingService.getAllBooking = () => prisma.bookings.findMany()
 
 bookingService.updateBookingStatus = (bookingId,status) => prisma.bookings.update({
   where : {bookingId},
   data : {status}
 })
+
+bookingService.findBookingByBookingId = (id) =>
+  prisma.bookings.findFirst({
+    where: { bookingId: id },
+  });
+
 
 module.exports = bookingService;
