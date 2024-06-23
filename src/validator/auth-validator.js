@@ -21,6 +21,7 @@ exports.loginSchema = Joi.object({
   password: Joi.string().required(),
 });
 
+
 exports.infoSchema = Joi.object({
   firstName: Joi.string(),
   lastName: Joi.string(),
@@ -30,3 +31,17 @@ exports.infoSchema = Joi.object({
   password: Joi.string().required(),
   confirmPassword: Joi.string().required().valid(Joi.ref("password")).strip(),
 });
+
+exports.adminRegisterSchema = Joi.object({
+  username: Joi.string().required().trim(),
+  password: Joi.string()
+    .required()
+    .pattern(/^[a-zA-Z0-9]{6,}$/),
+  confirmPassword: Joi.string().required().valid(Joi.ref("password")).strip()
+})
+
+exports.adminLoginSchema = Joi.object({
+  username: Joi.string().required(),
+  password: Joi.string().required(),
+})
+

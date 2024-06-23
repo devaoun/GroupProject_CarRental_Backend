@@ -12,9 +12,37 @@ CLOUDINARY_API_SECRET=IvReuEmMRvfdE_NowNxDPLwD634
 
 
 
-==========================
+===============================
 
-************************************************* FEATURE *************************************************
+************************************************* CUSTOMER FEATURE *************************************************
+
+
+
+*************************************************** ADMIN FEATURE ***************************************************
+--- REGISTER
+POST /admin/auth/register
+BODY
+    username
+    password
+    confirmPassword
+RESPONSE
+    201 message : "admin register success"
+    400 message
+    500 message
+
+--- LOGIN
+POST /admin/auth/login
+BODY
+    username
+    password
+RESPONSE
+    200 message : "adminToken"
+    400 message
+    500 message
+
+
+    
+
 
 
 

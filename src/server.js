@@ -10,19 +10,25 @@ const carsRouter = require("./routes/cars-route");
 const customerRouter = require("./routes/customer-route");
 const { authenticate } = require("./middlewares/authenticate");
 const paymentRouter = require("./routes/payment-route");
+const adminAuthRouter = require("./routes/adminAuth-route");
 const app = express();
 
 app.use(cors());
 app.use("/payment", paymentRouter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(limiter);
 
 app.use("/auth", authRouter);
 app.use("/branches", branchesRouter);
 app.use("/cars", carsRouter);
 app.use("/customer", authenticate, customerRouter);
+
+
+//============ ADMIN ============
+app.use("/admin/auth",adminAuthRouter)
+
+
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
