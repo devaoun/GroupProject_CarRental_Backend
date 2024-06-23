@@ -20,4 +20,14 @@ customerService.updateCustomerInfo = (id, data) =>
     where: { customerId: id },
   });
 
+customerService.addRewardPoints = (customerId, point) =>
+  prisma.customers.updateMany({
+    where: {
+      customerId: customerId,
+    },
+    data: {
+      totalPoints: point,
+    },
+  });
+
 module.exports = customerService;

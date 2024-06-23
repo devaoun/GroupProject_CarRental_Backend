@@ -7,4 +7,9 @@ bookingService.findBookingByCustomerId = (id) =>
     where: { customerId: id },
   });
 
+bookingService.findBookingByBookingId = (id) =>
+  prisma.bookings.findFirst({
+    where: { bookingId: id },
+  });
+
 module.exports = bookingService;
