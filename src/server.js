@@ -6,23 +6,24 @@ const notFoundMiddleware = require("./middlewares/notFound-middleware");
 const authRouter = require("./routes/auth-route");
 const limiter = require("./middlewares/rate-limit");
 const branchesRouter = require("./routes/branches-route");
-const carTypeRouter = require("./routes/carType-route");
-
+const carsRouter = require("./routes/cars-route");
+const customerRouter = require("./routes/customer-route");
+const { authenticate } = require("./middlewares/authenticate");
+const paymentRouter = require("./routes/payment-route");
 const adminAuthRouter = require("./routes/adminAuth-route");
-
-const carRouter = require("./routes/car-route");
-
 const app = express();
 
 app.use(cors());
+app.use("/payment", paymentRouter);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(limiter);
 
 app.use("/auth", authRouter);
 app.use("/branches", branchesRouter);
-app.use("/carType", carTypeRouter);
-app.use("/car",carRouter)
+app.use("/cars", carsRouter);
+app.use("/customer", authenticate, customerRouter);
+
 
 //============ ADMIN ============
 app.use("/admin/auth",adminAuthRouter)

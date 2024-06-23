@@ -4,6 +4,7 @@ const createError = require("../utils/createError");
 
 exports.authenticate = async (req, res, next) => {
   try {
+    const authorization = req.headers.authorization;
     if (!authorization || !authorization.startsWith("Bearer ")) {
       createError({
         message: "unauthenticated",
@@ -26,6 +27,7 @@ exports.authenticate = async (req, res, next) => {
 
     delete user.password;
     req.user = user;
+
     next();
   } catch (error) {
     next(error);
