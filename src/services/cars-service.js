@@ -64,4 +64,11 @@ carsService.findExistingCar = (licensePlate) =>
 
 carsService.createCar = (data) => prisma.cars.create({ data });
 
+carsService.findCarByStatus = (status) => prisma.cars.findMany({where : {status}})
+
+carsService.updateCar = (carId,data) => prisma.cars.update({
+  where : {carId},
+  data
+})
+
 module.exports = carsService;
