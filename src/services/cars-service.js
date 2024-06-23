@@ -64,4 +64,14 @@ carsService.findExistingCar = (licensePlate) =>
 
 carsService.createCar = (data) => prisma.cars.create({ data });
 
+carsService.findCarByCarId = (id) =>
+  prisma.cars.findFirst({
+    where: {
+      carId: id,
+    },
+    include: {
+      CarModel: true,
+    },
+  });
+
 module.exports = carsService;
