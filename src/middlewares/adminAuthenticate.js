@@ -6,10 +6,17 @@ const createError = require("../utils/createError");
 exports.adminAuthenticate = async (req, res, next) => {
     try {
         const authorization = req.headers.authorization;
+        const isActive = +req.headers.isactive
         if (!authorization || !authorization.startsWith("Bearer ")) {
             createError({
                 message: 'adminUnauthenticated',
                 statusCode: 401,
+            })
+        }
+        if(!isActive){
+            createError({
+                message : 'Admin is not active',
+                statusCode: 401
             })
         }
 
