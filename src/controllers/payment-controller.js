@@ -4,6 +4,9 @@ const paymentService = require("../services/payment-service");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const endpointSecret = process.env.STRIPE_ENDPOINT_SECRET;
 const { v4: uuidv4 } = require("uuid");
+const sendDetailedEmail = require("../utils/email-notification");
+const carsService = require("../services/cars-service");
+const branchesService = require("../services/branches-service");
 
 const paymentController = {};
 
@@ -47,11 +50,34 @@ paymentController.webhook = async (request, response) => {
       const totalAmount = paymentDetail.amount;
       const rewardPoints = Math.floor(totalAmount / 100);
 
-      const result = await customerService.addRewardPoints(
-        customerId,
-        rewardPoints
+      await customerService.addRewardPoints(customerId, rewardPoints);
+      // find car detail from car id
+      const carDetail = await carsService.findCarByCarId(bookingDetail.carId);
+      // find customer detail from customer id
+      const customerDetail = await customerService.findCustomerById(customerId);
+      // pickup and dropOff Location from booking id
+      const pickupLocation = await branchesService.findLocation(
+        bookingDetail.pickupLocationId
       );
-      console.log(result);
+      const dropOffLocation = await branchesService.findLocation(
+        bookingDetail.dropoffLocationId
+      );
+
+      // Email notification
+
+      await sendDetailedEmail(
+        customerDetail.email,
+        `${customerDetail.firstName} ${customerDetail.lastName}`,
+        bookingDetail.bookingId,
+        `${carDetail.CarModel.brand} ${carDetail.CarModel.model}`,
+        `${bookingDetail.startDate}`,
+        `${bookingDetail.endDate}`,
+        bookingDetail.pickDropTime,
+        pickupLocation.branchName,
+        dropOffLocation.branchName,
+        totalAmount
+      );
+
       break;
     }
   }
