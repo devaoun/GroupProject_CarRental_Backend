@@ -126,8 +126,11 @@ RESPONSE
 PATCH /admin/bookings/bookingId/:bookingId
 AUTHENTICATE => adminToken
 BODY
-    status
+    status (confirmed,cancelled)
 RESPONSE
+    200 message : BookingID : ${bookingId} status updated
+    400 message
+    500 message
 
 
 
