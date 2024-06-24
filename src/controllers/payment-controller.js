@@ -67,7 +67,6 @@ paymentController.webhook = async (request, response) => {
 
       await sendDetailedEmail(
         customerDetail.email,
-        `${customerDetail.firstName} ${customerDetail.lastName}`,
         bookingDetail.bookingId,
         `${carDetail.CarModel.brand} ${carDetail.CarModel.model}`,
         `${bookingDetail.startDate}`,

@@ -1,22 +1,19 @@
-
 const carsService = require("../services/cars-service");
 const createError = require("../utils/createError");
 
 const carController = {};
 
 carController.getAllCarsAvailable = async (req, res, next) => {
-  const { pickupLocationId, startDate, endDate, carTypeId, carModelId } =
-    req.query;
+  const { pickupLocationId, startDate, endDate } = req.query;
+
+  console.log(pickupLocationId);
 
   const data = {
     pickupLocationId: +pickupLocationId,
     startDate,
     endDate,
-    carTypeId: +carTypeId,
-    carModelId: +carModelId,
   };
 
-  console.log(data);
   try {
     const carsAvailable = await carsService.getCarsAvailable(data);
 
@@ -52,5 +49,4 @@ carController.createCar = async (req, res, next) => {
   }
 };
 
-module.exports = carController
-
+module.exports = carController;

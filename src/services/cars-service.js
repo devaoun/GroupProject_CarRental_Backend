@@ -5,23 +5,20 @@ const carsService = {};
 /* search for getCarsAvailable
 data = {
 
-pickupLocationId, startDate, endDate, carTypeId, carModelId
+pickupLocationId, startDate, endDate, 
 }
 */
 
 carsService.getCarsAvailable = (data) => {
   return prisma.cars.findMany({
     where: {
-      branchId: +data.pickupLocationId,
-      status: "available",
-      carModelId: +data.carModelId,
-      CarModel: {
-        carTypeId: +data.carTypeId,
-      },
-      OR: [
-        {
-          Bookings: {
-            none: {
+      branchId: data.pickupLocationId,
+      status: "available", // ค้นหาเฉพาะรถที่ available เท่านั้น
+      isDeleted: false,
+      Bookings: {
+        none: {
+          OR: [
+            {
               startDate: {
                 lte: new Date(data.endDate),
               },
@@ -29,14 +26,15 @@ carsService.getCarsAvailable = (data) => {
                 gte: new Date(data.startDate),
               },
             },
-          },
+          ],
         },
-      ],
+      },
     },
     include: {
       CarModel: {
         include: {
           CarType: true,
+          CarImages: true,
         },
       },
       Branch: true,
@@ -64,13 +62,14 @@ carsService.findExistingCar = (licensePlate) =>
 
 carsService.createCar = (data) => prisma.cars.create({ data });
 
+carsService.findCarByStatus = (status) =>
+  prisma.cars.findMany({ where: { status } });
 
-carsService.findCarByStatus = (status) => prisma.cars.findMany({where : {status}})
-
-carsService.updateCar = (carId,data) => prisma.cars.update({
-  where : {carId},
-  data
-})
+carsService.updateCar = (carId, data) =>
+  prisma.cars.update({
+    where: { carId },
+    data,
+  });
 
 carsService.findCarByCarId = (id) =>
   prisma.cars.findFirst({
@@ -81,6 +80,5 @@ carsService.findCarByCarId = (id) =>
       CarModel: true,
     },
   });
-
 
 module.exports = carsService;
