@@ -63,7 +63,7 @@ paymentController.webhook = async (request, response) => {
         bookingDetail.dropoffLocationId
       );
 
-      // Email notification
+      // Email notificatio
 
       await sendDetailedEmail(
         customerDetail.email,
