@@ -10,6 +10,7 @@ const adminRouter = express.Router()
 //AUTH
 adminRouter.post('/auth/register', validator.adminRegister, adminController.register)
 adminRouter.post('/auth/login', validator.adminLogin, adminController.login)
+adminRouter.get('/auth/me',adminAuthenticate,adminController.getAdmin)
 
 //ADMIN AUTHENTICATE ต้องมี adminToken ถึงจะทำข้างล่างได้
 adminRouter.use(adminAuthenticate)
