@@ -59,4 +59,12 @@ adminController.login = async (req, res, next) => {
     }
 }
 
+adminController.getAdmin = async(req,res,next) => {
+    try {
+        res.status(200).json({message : req.admin})
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = adminController
