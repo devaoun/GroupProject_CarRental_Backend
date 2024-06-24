@@ -8,7 +8,18 @@ bookingService.findBookingByCustomerId = (id) =>
   });
 
 
-bookingService.getAllBooking = () => prisma.bookings.findMany()
+bookingService.getAllBooking = () => prisma.bookings.findMany({
+  include: {
+    Customer : true,
+    Car : {
+      include : {
+        CarModel : true
+      }
+    },
+    PickupLocation : true,
+    DropoffLocation : true
+  }
+})
 
 bookingService.updateBookingStatus = (bookingId,status) => prisma.bookings.update({
   where : {bookingId},
