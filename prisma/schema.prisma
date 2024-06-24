@@ -91,6 +91,7 @@ model Cars {
   useDate      String
   createdAt    DateTime   @default(now()) @db.Timestamp(0)
   updatedAt    DateTime   @updatedAt @db.Timestamp(0)
+  isDeleted    Boolean    @default(false)
   CarModel     CarModels  @relation(fields: [carModelId], references: [carModelId])
   Branch       Branches?  @relation(fields: [branchId], references: [branchId])
   Bookings     Bookings[]
