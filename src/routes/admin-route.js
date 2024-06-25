@@ -15,6 +15,7 @@ adminRouter.get('/auth/me',adminAuthenticate,adminController.getAdmin)
 //ADMIN AUTHENTICATE ต้องมี adminToken ถึงจะทำข้างล่างได้
 adminRouter.use(adminAuthenticate)
 //CARS
+adminRouter.get('/cars',adminCarController.getAllCar)
 adminRouter.get('/cars/status/:carStatus',adminCarController.findCarByStatus)
 adminRouter.post('/cars',validator.adminCreateCar,adminCarController.createCar)
 adminRouter.patch('/cars/carId/:carId',adminCarController.updateCar)
