@@ -87,7 +87,7 @@ paymentController.webhook = async (request, response) => {
 };
 
 paymentController.createCheckoutSession = async (req, res, next) => {
-  const { totalAmount } = req.body; // มาจาก Booking id
+  const { bookingId, totalAmount } = req.booking; // มาจาก Booking id
 
   try {
     const orderId = uuidv4();
@@ -112,7 +112,7 @@ paymentController.createCheckoutSession = async (req, res, next) => {
     });
 
     const orderData = {
-      bookingId: +req.body.bookingId,
+      bookingId: bookingId,
       amount: +totalAmount,
       orderId: orderId,
       paymentStatus: session.status,
