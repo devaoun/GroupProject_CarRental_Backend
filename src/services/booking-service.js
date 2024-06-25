@@ -7,29 +7,31 @@ bookingService.findBookingByCustomerId = (id) =>
     where: { customerId: id },
   });
 
-
-bookingService.getAllBooking = () => prisma.bookings.findMany({
-  include: {
-    Customer : true,
-    Car : {
-      include : {
-        CarModel : true
-      }
+bookingService.getAllBooking = () =>
+  prisma.bookings.findMany({
+    include: {
+      Customer: true,
+      Car: {
+        include: {
+          CarModel: true,
+        },
+      },
+      PickupLocation: true,
+      DropoffLocation: true,
     },
-    PickupLocation : true,
-    DropoffLocation : true
-  }
-})
+  });
 
-bookingService.updateBookingStatus = (bookingId,status) => prisma.bookings.update({
-  where : {bookingId},
-  data : {status}
-})
+bookingService.updateBookingStatus = (bookingId, status) =>
+  prisma.bookings.update({
+    where: { bookingId },
+    data: { status },
+  });
 
 bookingService.findBookingByBookingId = (id) =>
   prisma.bookings.findFirst({
     where: { bookingId: id },
   });
 
+bookingService.createBooking = (data) => prisma.bookings.create({ data });
 
 module.exports = bookingService;

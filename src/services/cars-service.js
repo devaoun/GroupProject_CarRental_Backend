@@ -77,7 +77,11 @@ carsService.findCarByCarId = (id) =>
       carId: id,
     },
     include: {
-      CarModel: true,
+      CarModel: {
+        include: {
+          CarType: true,
+        },
+      },
     },
   });
 
