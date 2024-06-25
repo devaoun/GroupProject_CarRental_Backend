@@ -41,10 +41,18 @@ adminCarController.updateCar = async(req,res,next) => {
     try {
         const data = req.body
         const carId = +req.params.carId
-        data.branchId = +data.branchId
         const result = await carsService.updateCar(carId,data)
         console.log(result)
         res.status(201).json({message : 'car update success'})
+    } catch (error) {
+        next(error)
+    }
+}
+
+adminCarController.getAllCar = async(req,res,next) => {
+    try {
+        const data = await carsService.getAllCar()
+        res.status(200).json({message : data})
     } catch (error) {
         next(error)
     }

@@ -85,4 +85,14 @@ carsService.findCarByCarId = (id) =>
     },
   });
 
+carsService.getAllCar = () => prisma.cars.findMany(
+  {
+    where: { isDeleted: false },
+    include: {
+      Branch: true,
+      CarModel: true,
+    }
+  }
+)
+
 module.exports = carsService;
