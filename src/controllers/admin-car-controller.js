@@ -58,4 +58,13 @@ adminCarController.getAllCar = async(req,res,next) => {
     }
 }
 
+adminCarController.getAllCarModel = async(req,res,next) => {
+    try {
+        const data = await carModelsService.getAllCarModels()
+        res.status(200).json({message : data})
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = adminCarController

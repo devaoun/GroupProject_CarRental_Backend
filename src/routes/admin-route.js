@@ -19,6 +19,7 @@ adminRouter.use(adminAuthenticate)
 //CARS
 adminRouter.get('/cars',adminCarController.getAllCar)
 adminRouter.get('/cars/status/:carStatus',adminCarController.findCarByStatus)
+adminRouter.get('/cars/model',adminCarController.getAllCarModel)
 adminRouter.post('/cars',validator.adminCreateCar,adminCarController.createCar)
 adminRouter.patch('/cars/carId/:carId',adminCarController.updateCar)
 adminRouter.post('/cars/model',validator.adminCreateCarModels,adminCarController.createCarModel)
