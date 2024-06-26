@@ -14,4 +14,14 @@ paymentService.saveOrderDataForPayment = (data) =>
 paymentService.findPaymentBySessionId = (sessionId) =>
   prisma.payments.findFirst({ where: { sessionId: sessionId } });
 
+paymentService.getAllPayment = () => prisma.payments.findMany({
+  include :  {
+    Booking : {
+      include : {
+        Customer : true
+      }
+    }
+  }
+})
+
 module.exports = paymentService;

@@ -30,4 +30,6 @@ customerService.addRewardPoints = (customerId, point) =>
     },
   });
 
+  customerService.getAllCustomer = () => prisma.customers.findMany()
+
 module.exports = customerService;

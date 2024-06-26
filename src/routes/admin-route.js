@@ -4,6 +4,8 @@ const adminController = require('../controllers/admin-controller')
 const { adminAuthenticate } = require('../middlewares/adminAuthenticate')
 const adminCarController = require('../controllers/admin-car-controller')
 const adminBookingController = require('../controllers/admin-booking-controller')
+const adminPaymentController = require('../controllers/admin-payment-controller')
+const adminCustomerController = require('../controllers/admin-customer-controller')
 
 const adminRouter = express.Router()
 
@@ -23,5 +25,9 @@ adminRouter.post('/cars/model',validator.adminCreateCarModels,adminCarController
 //BOOKINGS
 adminRouter.get('/bookings',adminBookingController.getAllBooking)
 adminRouter.patch('/bookings/bookingId/:bookingId',adminBookingController.updateBookingStatus)
+//PAYMENTS
+adminRouter.get('/payments',adminPaymentController.getAllPayment)
+//CUSTOMERS
+adminRouter.get('/customers',adminCustomerController.getAllCustomer)
 
 module.exports = adminRouter
