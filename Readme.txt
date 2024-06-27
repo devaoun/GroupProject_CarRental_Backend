@@ -16,6 +16,10 @@ STRIPE_SECRET_KEY=sk_test_51PRSAsC6Bw2G4bOHJYVCWrrLcGpBOhOFzPwXGQgiAgRQbv3GtA2F9
 STRIPE_ENDPOINT_SECRET=whsec_94bfd68df74de8cbcbbd291c39bed83382e1197d0b2cba3b47b63fcc1e1a1f7a
 
 
+MAILSENDER="narong.dan1@gmail.com"
+MAIL_PASSWORD="ruir abug mzop fmms"
+
+
 
 ===============================
 

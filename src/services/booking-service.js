@@ -34,4 +34,9 @@ bookingService.findBookingByBookingId = (id) =>
 
 bookingService.createBooking = (data) => prisma.bookings.create({ data });
 
+bookingService.deleteBookingByBookingId = (bookingId) =>
+  prisma.bookings.deleteMany({
+    where: { bookingId: bookingId },
+  });
+
 module.exports = bookingService;
