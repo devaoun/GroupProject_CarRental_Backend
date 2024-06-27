@@ -1,0 +1,136 @@
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum CarStatus {
+  available
+  rented
+  maintenance
+}
+
+enum BookingStatus {
+  confirmed
+  cancelled
+}
+
+model Admins {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @updatedAt @db.Timestamp(0)
+}
+
+model Customers {
+  customerId    Int        @id @default(autoincrement())
+  firstName     String
+  lastName      String
+  email         String     @unique
+  password      String
+  phone         String
+  address       String?
+  driverLicense String     @unique
+  totalPoints   Int        @default(0)
+  createdAt     DateTime   @default(now()) @db.Timestamp(0)
+  updatedAt     DateTime   @default(now()) @updatedAt @db.Timestamp(0)
+  Bookings      Bookings[]
+}
+
+model Branches {
+  branchId   Int    @id @default(autoincrement())
+  branchName String
+  region     String
+  lat        Float
+  lng        Float
+
+  Cars            Cars[]
+  PickupBookings  Bookings[] @relation("PickupLocation")
+  DropoffBookings Bookings[] @relation("DropoffLocation")
+}
+
+model CarTypes {
+  carTypeId   Int         @id @default(autoincrement())
+  carTypeName String
+  pricePerDay Float
+  CarModels   CarModels[]
+}
+
+model CarModels {
+  carModelId   Int         @id @default(autoincrement())
+  carTypeId    Int
+  brand        String
+  model        String
+  color        String
+  transmission String
+  fuel         String
+  seats        Int
+  CarImages    CarImages[]
+  Cars         Cars[]
+  CarType      CarTypes    @relation(fields: [carTypeId], references: [carTypeId])
+}
+
+model CarImages {
+  imageId    Int       @id @default(autoincrement())
+  carModelId Int
+  imageUrl   String
+  CarModel   CarModels @relation(fields: [carModelId], references: [carModelId])
+}
+
+model Cars {
+  carId        Int        @id @default(autoincrement())
+  carModelId   Int
+  licensePlate String     @unique
+  status       CarStatus  @default(available)
+  branchId     Int?
+  useDate      String
+  createdAt    DateTime   @default(now()) @db.Timestamp(0)
+  updatedAt    DateTime   @updatedAt @db.Timestamp(0)
+  isDeleted    Boolean    @default(false)
+  CarModel     CarModels  @relation(fields: [carModelId], references: [carModelId])
+  Branch       Branches?  @relation(fields: [branchId], references: [branchId])
+  Bookings     Bookings[]
+}
+
+model Bookings {
+  bookingId         Int           @id @default(autoincrement())
+  customerId        Int
+  carId             Int
+  startDate         DateTime
+  endDate           DateTime
+  pickDropTime      String?
+  totalAmount       Float
+  pickupLocationId  Int
+  dropoffLocationId Int
+  status            BookingStatus @default(confirmed)
+  createdAt         DateTime      @default(now()) @db.Timestamp(0)
+  updatedAt         DateTime      @updatedAt @db.Timestamp(0)
+  Customer          Customers     @relation(fields: [customerId], references: [customerId])
+  Car               Cars          @relation(fields: [carId], references: [carId])
+  PickupLocation    Branches      @relation(name: "PickupLocation", fields: [pickupLocationId], references: [branchId])
+  DropoffLocation   Branches      @relation(name: "DropoffLocation", fields: [dropoffLocationId], references: [branchId])
+  Payment           Payments[]
+}
+
+model Payments {
+  paymentId     Int      @id @default(autoincrement())
+  bookingId     Int      @unique
+  paymentDate   DateTime
+  amount        Float
+  orderId       String // Used with Stripe
+  sessionId     String // Stripe checkout session id
+  paymentStatus String // Status from Stripe
+  createdAt     DateTime @default(now()) @db.Timestamp(0)
+  updatedAt     DateTime @updatedAt @db.Timestamp(0)
+  Booking       Bookings @relation(fields: [bookingId], references: [bookingId])
+}

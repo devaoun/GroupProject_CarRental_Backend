@@ -27,8 +27,6 @@ paymentController.webhook = async (request, response) => {
     case "checkout.session.completed": {
       const session = event.data.object;
 
-      console.log(session);
-
       // update status กลับเข้าไปใน database หลังจากลูกค้าจ่ายแล้ว
       const sessionId = session.id;
       const paymentStatus = session.status;
@@ -47,14 +45,18 @@ paymentController.webhook = async (request, response) => {
       );
 
       const customerId = bookingDetail.customerId;
+      // find customer detail from customer id
+      const customerDetail = await customerService.findCustomerById(customerId);
+
       const totalAmount = paymentDetail.amount;
       const rewardPoints = Math.floor(totalAmount / 100);
 
-      await customerService.addRewardPoints(customerId, rewardPoints);
+      const newTotalPoints = customerDetail.totalPoints + rewardPoints;
+
+      await customerService.addRewardPoints(customerId, newTotalPoints);
       // find car detail from car id
       const carDetail = await carsService.findCarByCarId(bookingDetail.carId);
-      // find customer detail from customer id
-      const customerDetail = await customerService.findCustomerById(customerId);
+
       // pickup and dropOff Location from booking id
       const pickupLocation = await branchesService.findLocation(
         bookingDetail.pickupLocationId
@@ -62,6 +64,13 @@ paymentController.webhook = async (request, response) => {
       const dropOffLocation = await branchesService.findLocation(
         bookingDetail.dropoffLocationId
       );
+
+      // update car status
+      const data = {
+        status: "rented",
+        branchId: bookingDetail.dropoffLocationId,
+      };
+      await carsService.updateCar(bookingDetail.carId, data);
 
       // Email notification
 
@@ -80,9 +89,27 @@ paymentController.webhook = async (request, response) => {
 
       break;
     }
+
+    case "checkout.session.expired":
+      const session = event.data.object;
+      const sessionId = session.id;
+      // delete payment, booking detail, and update car status
+      const paymentDetail = await paymentService.findPaymentBySessionId(
+        sessionId
+      );
+      console.log(paymentDetail);
+      await paymentService.deletePaymentBySessionId(paymentDetail.sessionId);
+
+      console.log("payment deleted");
+      await bookingService.deleteBookingByBookingId(paymentDetail.bookingId);
+      console.log("booking deleted");
+
+      break;
+
+    default:
+      console.log(`Unhandled event type ${event.type}`);
   }
 
-  /// อาจจะใช้ nodemailer ในการส่ง emailตรงนี้
   response.status(200).end();
 };
 
@@ -109,6 +136,7 @@ paymentController.createCheckoutSession = async (req, res, next) => {
       mode: "payment",
       success_url: `http://localhost:8888/success.html?id=${orderId}`,
       cancel_url: `http://localhost:8888/cancel.html`,
+      expires_at: Math.floor(Date.now() / 1000) + 1800, // เซสชันหมดอายุใน 15 นาที (900 วินาที)
     });
 
     const orderData = {
@@ -121,6 +149,7 @@ paymentController.createCheckoutSession = async (req, res, next) => {
     };
 
     const result = await paymentService.saveOrderDataForPayment(orderData);
+    // change car status from available to rented
 
     res.status(200).json({ payment: result, url: session.url });
   } catch (error) {
