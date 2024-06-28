@@ -1,3 +1,4 @@
+const branchesService = require("../services/branches-service")
 const carModelsService = require("../services/carModels-service")
 const carsService = require("../services/cars-service")
 
@@ -8,7 +9,6 @@ adminCarController.findCarByStatus = async(req,res,next) => {
     try {
         const status = req.params.carStatus
         const data = await carsService.findCarByStatus(status)
-        console.log(data)
         res.status(200).json({message : data})
     } catch (error) {
         next(error)
@@ -61,6 +61,15 @@ adminCarController.getAllCar = async(req,res,next) => {
 adminCarController.getAllCarModel = async(req,res,next) => {
     try {
         const data = await carModelsService.getAllCarModels()
+        res.status(200).json({message : data})
+    } catch (error) {
+        next(error)
+    }
+}
+
+adminCarController.getAllBranch = async(req,res,next) => {
+    try {
+        const data = await branchesService.getAllBranches()
         res.status(200).json({message : data})
     } catch (error) {
         next(error)
