@@ -26,6 +26,7 @@ adminRouter.post('/cars/model',validator.adminCreateCarModels,adminCarController
 //BOOKINGS
 adminRouter.get('/bookings',adminBookingController.getAllBooking)
 adminRouter.patch('/bookings/bookingId/:bookingId',adminBookingController.updateBookingStatus)
+adminRouter.delete('/booking/:bookingId',adminPaymentController.deletePaymentByBookingId)
 //PAYMENTS
 adminRouter.get('/payments',adminPaymentController.getAllPayment)
 //CUSTOMERS
