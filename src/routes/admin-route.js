@@ -30,5 +30,7 @@ adminRouter.patch('/bookings/bookingId/:bookingId',adminBookingController.update
 adminRouter.get('/payments',adminPaymentController.getAllPayment)
 //CUSTOMERS
 adminRouter.get('/customers',adminCustomerController.getAllCustomer)
+//BRANCHES
+adminRouter.get('/branches',adminCarController.getAllBranch)
 
 module.exports = adminRouter
