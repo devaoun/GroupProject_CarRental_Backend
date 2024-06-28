@@ -28,4 +28,8 @@ paymentService.getAllPayment = () =>
 paymentService.deletePaymentBySessionId = (sessionId) =>
   prisma.payments.deleteMany({ where: { sessionId: sessionId } });
 
+paymentService.deletePaymentByBookingId = (bookingId) => prisma.payments.delete({
+  where : {bookingId}
+})
+
 module.exports = paymentService;
