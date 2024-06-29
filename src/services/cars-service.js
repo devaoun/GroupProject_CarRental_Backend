@@ -95,4 +95,6 @@ carsService.getAllCar = () => prisma.cars.findMany(
   }
 )
 
+carsService.deleteCar = (carId) => prisma.cars.delete({where : {carId}})
+
 module.exports = carsService;
