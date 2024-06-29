@@ -23,6 +23,7 @@ adminRouter.get('/cars/model',adminCarController.getAllCarModel)
 adminRouter.post('/cars',validator.adminCreateCar,adminCarController.createCar)
 adminRouter.patch('/cars/carId/:carId',adminCarController.updateCar)
 adminRouter.post('/cars/model',validator.adminCreateCarModels,adminCarController.createCarModel)
+adminRouter.delete('/car/:carId',adminCarController.deleteCar)
 //BOOKINGS
 adminRouter.get('/bookings',adminBookingController.getAllBooking)
 adminRouter.patch('/bookings/bookingId/:bookingId',adminBookingController.updateBookingStatus)
