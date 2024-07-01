@@ -2,7 +2,11 @@ const prisma = require("../model/prisma");
 
 const carModelsService = {};
 
-carModelsService.getAllCarModels = () => prisma.carModels.findMany();
+carModelsService.getAllCarModels = () => prisma.carModels.findMany(
+  {include : 
+    {CarImages : true}
+  }
+);
 
 carModelsService.getCarModelByCarTypeId = (carTypeId) =>
   prisma.carModels.findMany({
