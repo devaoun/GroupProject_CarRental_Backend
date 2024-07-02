@@ -5,6 +5,11 @@ const bookingService = {};
 bookingService.findBookingByCustomerId = (id) =>
   prisma.bookings.findMany({
     where: { customerId: id },
+    include: {
+      Car: { include: { CarModel: true } },
+      PickupLocation: true,
+      DropoffLocation: true,
+    },
   });
 
 bookingService.getAllBooking = () =>
