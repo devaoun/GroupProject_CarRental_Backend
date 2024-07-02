@@ -42,6 +42,22 @@ adminCarController.updateCar = async (req, res, next) => {
     try {
         const data = req.body
         const carId = +req.params.carId
+        const { Bookings } = await carsService.findCarByCarId(carId)
+        const currentDate = new Date()
+        const isRenting = Bookings.map(item => {
+            if (item.status === 'confirmed') {
+                if (currentDate >= item.startDate && currentDate <= item.endDate) {
+                    return true
+                }
+            }
+        })
+        const findRenting = (isRenting.filter(item => item === true))
+        if (findRenting.length > 0) {
+            createError({
+                message: 'This car is being rented during selected period.',
+                statusCode: 400
+            })
+        }
         const result = await carsService.updateCar(carId, data)
         console.log(result)
         res.status(201).json({ message: 'car update success' })
@@ -80,7 +96,7 @@ adminCarController.getAllBranch = async (req, res, next) => {
 adminCarController.deleteCar = async (req, res, next) => {
     try {
         const carId = +req.params.carId
-        const {status} = await carsService.findCarByCarId(carId)
+        const { status } = await carsService.findCarByCarId(carId)
         console.log(status)
         if (status === 'rented') {
             createError({
