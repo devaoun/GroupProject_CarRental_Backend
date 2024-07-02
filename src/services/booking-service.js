@@ -11,6 +11,7 @@ bookingService.getAllBooking = () =>
   prisma.bookings.findMany({
     include: {
       Customer: true,
+      Payment: true,
       Car: {
         include: {
           CarModel: true,
