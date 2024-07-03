@@ -97,12 +97,10 @@ paymentController.webhook = async (request, response) => {
       const paymentDetail = await paymentService.findPaymentBySessionId(
         sessionId
       );
-      console.log(paymentDetail);
+
       await paymentService.deletePaymentBySessionId(paymentDetail.sessionId);
 
-      console.log("payment deleted");
       await bookingService.deleteBookingByBookingId(paymentDetail.bookingId);
-      console.log("booking deleted");
 
       break;
 
