@@ -134,8 +134,8 @@ paymentController.createCheckoutSession = async (req, res, next) => {
         },
       ],
       mode: "payment",
-      success_url: `http://localhost:8888/success.html?id=${orderId}`,
-      cancel_url: `http://localhost:8888/cancel.html`,
+      success_url: `http://localhost:5173/paymentSuccessful`,
+      cancel_url: `http://localhost:5173/paymentCancelled`,
       expires_at: Math.floor(Date.now() / 1000) + 1800, // เซสชันหมดอายุใน 15 นาที (900 วินาที)
     });
 
