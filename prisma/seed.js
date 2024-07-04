@@ -296,34 +296,147 @@ const carsData = [
     { carModelId: 16, licensePlate: 'ศข 1209', status: 'available', branchId: 5, useDate: '2024-01-01' },
     { carModelId: 16, licensePlate: 'สก 1210', status: 'available', branchId: 5, useDate: '2024-01-01' },
 
-    { carModelId: 16, licensePlate: 'กข 1211', status: 'available', branchId: 1, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'ขก 1212', status: 'available', branchId: 1, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'งข 1213', status: 'available', branchId: 1, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'จก 1214', status: 'available', branchId: 2, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'ฉข 1215', status: 'available', branchId: 2, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'ชก 1216', status: 'available', branchId: 2, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'ทข 1217', status: 'available', branchId: 3, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'บก 1218', status: 'available', branchId: 3, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'ปข 1219', status: 'available', branchId: 3, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'พข 1220', status: 'available', branchId: 4, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'ภก 1221', status: 'available', branchId: 4, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'มข 1222', status: 'available', branchId: 4, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'รข 1223', status: 'available', branchId: 5, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'ศข 1224', status: 'available', branchId: 5, useDate: '2024-01-01' },
-    { carModelId: 16, licensePlate: 'สก 1225', status: 'available', branchId: 5, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'กข 1211', status: 'available', branchId: 1, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'ขก 1212', status: 'available', branchId: 1, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'งข 1213', status: 'available', branchId: 1, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'จก 1214', status: 'available', branchId: 2, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'ฉข 1215', status: 'available', branchId: 2, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'ชก 1216', status: 'available', branchId: 2, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'ทข 1217', status: 'available', branchId: 3, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'บก 1218', status: 'available', branchId: 3, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'ปข 1219', status: 'available', branchId: 3, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'พข 1220', status: 'available', branchId: 4, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'ภก 1221', status: 'available', branchId: 4, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'มข 1222', status: 'available', branchId: 4, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'รข 1223', status: 'available', branchId: 5, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'ศข 1224', status: 'available', branchId: 5, useDate: '2024-01-01' },
+    { carModelId: 17, licensePlate: 'สก 1225', status: 'available', branchId: 5, useDate: '2024-01-01' },
+
+    { carModelId: 18, licensePlate: 'กข 1226', status: 'available', branchId: 1, useDate: '2024-01-01' },
+    { carModelId: 18, licensePlate: 'ขก 1227', status: 'available', branchId: 1, useDate: '2024-01-01' },
+    { carModelId: 18, licensePlate: 'งข 1228', status: 'available', branchId: 1, useDate: '2024-01-01' },
+    { carModelId: 18, licensePlate: 'จก 1229', status: 'available', branchId: 2, useDate: '2024-01-01' },
+    { carModelId: 18, licensePlate: 'ฉข 1230', status: 'available', branchId: 2, useDate: '2024-01-01' },
+    { carModelId: 18, licensePlate: 'ชก 1231', status: 'available', branchId: 2, useDate: '2024-01-01' },
+    { carModelId: 18, licensePlate: 'ทข 1232', status: 'available', branchId: 3, useDate: '2024-01-01' },
+    { carModelId: 18, licensePlate: 'บก 1233', status: 'available', branchId: 3, useDate: '2024-01-01' },
+    { carModelId: 18, licensePlate: 'ปข 1234', status: 'available', branchId: 3, useDate: '2024-01-01' },
+    { carModelId: 18, licensePlate: 'พข 1235', status: 'available', branchId: 4, useDate: '2024-01-01' },
+    { carModelId: 18, licensePlate: 'ภก 1236', status: 'available', branchId: 4, useDate: '2024-01-01' },
+    { carModelId: 18, licensePlate: 'มข 1237', status: 'available', branchId: 4, useDate: '2024-01-01' },
+    { carModelId: 18, licensePlate: 'รข 1238', status: 'available', branchId: 5, useDate: '2024-01-01' },
+    { carModelId: 18, licensePlate: 'ศข 1239', status: 'available', branchId: 5, useDate: '2024-01-01' },
+    { carModelId: 18, licensePlate: 'สก 1240', status: 'available', branchId: 5, useDate: '2024-01-01' },
+
+    { carModelId: 19, licensePlate: 'กข 1241', status: 'available', branchId: 1, useDate: '2024-01-01' },
+    { carModelId: 19, licensePlate: 'ขก 1242', status: 'available', branchId: 1, useDate: '2024-01-01' },
+    { carModelId: 19, licensePlate: 'งข 1243', status: 'available', branchId: 1, useDate: '2024-01-01' },
+    { carModelId: 19, licensePlate: 'จก 1244', status: 'available', branchId: 2, useDate: '2024-01-01' },
+    { carModelId: 19, licensePlate: 'ฉข 1245', status: 'available', branchId: 2, useDate: '2024-01-01' },
+    { carModelId: 19, licensePlate: 'ชก 1246', status: 'available', branchId: 2, useDate: '2024-01-01' },
+    { carModelId: 19, licensePlate: 'ทข 1247', status: 'available', branchId: 3, useDate: '2024-01-01' },
+    { carModelId: 19, licensePlate: 'บก 1248', status: 'available', branchId: 3, useDate: '2024-01-01' },
+    { carModelId: 19, licensePlate: 'ปข 1249', status: 'available', branchId: 3, useDate: '2024-01-01' },
+    { carModelId: 19, licensePlate: 'พข 1250', status: 'available', branchId: 4, useDate: '2024-01-01' },
+    { carModelId: 19, licensePlate: 'ภก 1251', status: 'available', branchId: 4, useDate: '2024-01-01' },
+    { carModelId: 19, licensePlate: 'มข 1252', status: 'available', branchId: 4, useDate: '2024-01-01' },
+    { carModelId: 19, licensePlate: 'รข 1253', status: 'available', branchId: 5, useDate: '2024-01-01' },
+    { carModelId: 19, licensePlate: 'ศข 1254', status: 'available', branchId: 5, useDate: '2024-01-01' },
+    { carModelId: 19, licensePlate: 'สก 1255', status: 'available', branchId: 5, useDate: '2024-01-01' },
+
+    { carModelId: 20, licensePlate: 'กข 1256', status: 'available', branchId: 1, useDate: '2024-01-01' },
+    { carModelId: 20, licensePlate: 'ขก 1257', status: 'available', branchId: 1, useDate: '2024-01-01' },
+    { carModelId: 20, licensePlate: 'งข 1258', status: 'available', branchId: 1, useDate: '2024-01-01' },
+    { carModelId: 20, licensePlate: 'จก 1259', status: 'available', branchId: 2, useDate: '2024-01-01' },
+    { carModelId: 20, licensePlate: 'ฉข 1260', status: 'available', branchId: 2, useDate: '2024-01-01' },
+    { carModelId: 20, licensePlate: 'ชก 1261', status: 'available', branchId: 2, useDate: '2024-01-01' },
+    { carModelId: 20, licensePlate: 'ทข 1262', status: 'available', branchId: 3, useDate: '2024-01-01' },
+    { carModelId: 20, licensePlate: 'บก 1263', status: 'available', branchId: 3, useDate: '2024-01-01' },
+    { carModelId: 20, licensePlate: 'ปข 1264', status: 'available', branchId: 3, useDate: '2024-01-01' },
+    { carModelId: 20, licensePlate: 'พข 1265', status: 'available', branchId: 4, useDate: '2024-01-01' },
+    { carModelId: 20, licensePlate: 'ภก 1266', status: 'available', branchId: 4, useDate: '2024-01-01' },
+    { carModelId: 20, licensePlate: 'มข 1267', status: 'available', branchId: 4, useDate: '2024-01-01' },
+    { carModelId: 20, licensePlate: 'รข 1268', status: 'available', branchId: 5, useDate: '2024-01-01' },
+    { carModelId: 20, licensePlate: 'ศข 1269', status: 'available', branchId: 5, useDate: '2024-01-01' },
+    { carModelId: 20, licensePlate: 'สก 1270', status: 'available', branchId: 5, useDate: '2024-01-01' },
 ]
 
-const carsSeed = async () => {
+const carImagesData = [
+    { imageId: 1, carModelId: 1, imageUrl: 'https://img2.pic.in.th/pic/toyota-yaris-white-default.png' },
+    { imageId: 2, carModelId: 1, imageUrl: 'https://img2.pic.in.th/pic/yariswhite2.jpg' },
+    { imageId: 3, carModelId: 1, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/yariswhite3.jpg' },
+    { imageId: 4, carModelId: 2, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/yarisblack1.jpg' },
+    { imageId: 5, carModelId: 2, imageUrl: 'https://img2.pic.in.th/pic/Yaris-2023-GR-Sport-hybrid-Negro-Azabache-en-Toyota-Ourense-3.webp' },
+    { imageId: 6, carModelId: 2, imageUrl: 'https://img2.pic.in.th/pic/yarisblack3.webp' },
+    { imageId: 7, carModelId: 3, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/jazzw10be05b42d3d9d1f1.jpg' },
+    { imageId: 8, carModelId: 3, imageUrl: 'https://img2.pic.in.th/pic/jazzw2.webp' },
+    { imageId: 9, carModelId: 3, imageUrl: 'https://img2.pic.in.th/pic/jazzw3880c9cc064e051d2.jpg' },
+    { imageId: 10, carModelId: 4, imageUrl: 'https://img2.pic.in.th/pic/jazzb3.png' },
+    { imageId: 11, carModelId: 4, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/jazzb1.jpg' },
+    { imageId: 12, carModelId: 4, imageUrl: 'https://img2.pic.in.th/pic/jazzb2.jpg' },
+    { imageId: 13, carModelId: 5, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/toyota-altis-white-default.jpg' },
+    { imageId: 14, carModelId: 5, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/altisw1.jpg' },
+    { imageId: 15, carModelId: 5, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/altisw3.jpg' },
+    { imageId: 16, carModelId: 6, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/altisb1.png' },
+    { imageId: 17, carModelId: 6, imageUrl: 'https://img2.pic.in.th/pic/altisb2.webp' },
+    { imageId: 18, carModelId: 6, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/altisb3.webp' },
+    { imageId: 19, carModelId: 7, imageUrl: 'https://img2.pic.in.th/pic/handa-civic-white-default.png' },
+    { imageId: 20, carModelId: 7, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/honda-civic-white-back.png' },
+    { imageId: 21, carModelId: 7, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/honda-civic-white-cental.png' },
+    { imageId: 22, carModelId: 8, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/honda-civic-black-default.webp' },
+    { imageId: 23, carModelId: 8, imageUrl: 'https://img2.pic.in.th/pic/honda-civic-black-cental.png' },
+    { imageId: 24, carModelId: 8, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/honda-civic-black-back.png' },
+    { imageId: 25, carModelId: 9, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/toyota-camry-white-default.jpg' },
+    { imageId: 26, carModelId: 9, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/toyota-camry-white-cental.png' },
+    { imageId: 27, carModelId: 9, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/toyota-camry-white-back.png' },
+    { imageId: 28, carModelId: 10, imageUrl: 'https://img2.pic.in.th/pic/toyota-camry-black-default.png' },
+    { imageId: 29, carModelId: 10, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/toyota-camry-black-cental.png' },
+    { imageId: 30, carModelId: 10, imageUrl: 'https://img2.pic.in.th/pic/toyota-camry-black-back.png' },
+    { imageId: 31, carModelId: 11, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/toyota-fortuner-white-default.webp' },
+    { imageId: 32, carModelId: 11, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/toyota-fortuner-white-back.png' },
+    { imageId: 33, carModelId: 11, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/toyota-fortuner-white-front.png' },
+    { imageId: 34, carModelId: 12, imageUrl: 'https://img2.pic.in.th/pic/toyota-fortuner-black-default.jpg' },
+    { imageId: 35, carModelId: 12, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/toyota-fortuner-black-center.png' },
+    { imageId: 36, carModelId: 12, imageUrl: 'https://img2.pic.in.th/pic/toyota-fortuner-black-back.png' },
+    { imageId: 37, carModelId: 13, imageUrl: 'https://img2.pic.in.th/pic/peugeot-5008-white-default.jpg' },
+    { imageId: 38, carModelId: 13, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/peugeot-5008-white-back.png' },
+    { imageId: 39, carModelId: 13, imageUrl: 'https://img2.pic.in.th/pic/peugeot-5008-white-front.png' },
+    { imageId: 40, carModelId: 14, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/peugeotb3.jpg' },
+    { imageId: 41, carModelId: 14, imageUrl: 'https://img2.pic.in.th/pic/peugeotb2.jpg' },
+    { imageId: 42, carModelId: 14, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/peugeotb1.jpg' },
+    { imageId: 43, carModelId: 15, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/bmw-220i-m-sport-white.png' },
+    { imageId: 44, carModelId: 15, imageUrl: 'https://img2.pic.in.th/pic/bmw3.jpg' },
+    { imageId: 45, carModelId: 15, imageUrl: 'https://img2.pic.in.th/pic/bmw2.jpg' },
+    { imageId: 46, carModelId: 16, imageUrl: 'https://img2.pic.in.th/pic/bmw-220i-m-sport-black.jpg' },
+    { imageId: 47, carModelId: 16, imageUrl: 'https://img2.pic.in.th/pic/bmb2.jpg' },
+    { imageId: 48, carModelId: 16, imageUrl: 'https://img2.pic.in.th/pic/bmb1.jpg' },
+    { imageId: 49, carModelId: 17, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/bydw1.png' },
+    { imageId: 50, carModelId: 17, imageUrl: 'https://img2.pic.in.th/pic/bydw2.png' },
+    { imageId: 51, carModelId: 17, imageUrl: 'https://img2.pic.in.th/pic/bydw3.jpg' },
+    { imageId: 52, carModelId: 18, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/byd-atto3-black.png' },
+    { imageId: 53, carModelId: 18, imageUrl: 'https://img2.pic.in.th/pic/byd3.jpg' },
+    { imageId: 54, carModelId: 18, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/bydb2.png' },
+    { imageId: 55, carModelId: 19, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/byd-dolphin-white.webp' },
+    { imageId: 56, carModelId: 19, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/byddw3.jpg' },
+    { imageId: 57, carModelId: 19, imageUrl: 'https://img2.pic.in.th/pic/byddw2.jpg' },
+    { imageId: 58, carModelId: 20, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/byd-dolphin-black.webp' },
+    { imageId: 59, carModelId: 20, imageUrl: 'https://img5.pic.in.th/file/secure-sv1/byddb3.jpg' },
+    { imageId: 60, carModelId: 20, imageUrl: 'https://img2.pic.in.th/pic/byddb2.jpg' }
+  ];
+
+const seed = async () => {
     // await prisma.branches.createMany({ data: branchesData })
     // await prisma.carTypes.createMany({ data: carTypesData })
     // await prisma.carModels.createMany({ data: carModelsData })
     // await prisma.cars.createMany({ data: carsData })
+    // await prisma.carImages.createMany({data : carImagesData})
     try {
         return await prisma.$transaction(async (tx) => {
             await tx.branches.createMany({ data: branchesData })
             await tx.carTypes.createMany({ data: carTypesData })
             await tx.carModels.createMany({ data: carModelsData })
             await tx.cars.createMany({ data: carsData })
+            await tx.carImages.createMany({data : carImagesData})
             return
         })
     } catch (error) {
@@ -331,4 +444,4 @@ const carsSeed = async () => {
     }
 }
 
-carsSeed();
+seed();
