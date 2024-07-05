@@ -8,7 +8,7 @@ exports.registerSchema = Joi.object({
   phone: Joi.string()
     .pattern(/^[0-9]{10}$/)
     .required(),
-  address: Joi.string().required(),
+  address: Joi.string().optional().allow(""),
   driverLicense: Joi.string().required(),
   password: Joi.string()
     .required()
@@ -20,7 +20,6 @@ exports.loginSchema = Joi.object({
   email: Joi.string().required(),
   password: Joi.string().required(),
 });
-
 
 exports.infoSchema = Joi.object({
   firstName: Joi.string(),
@@ -39,12 +38,10 @@ exports.adminRegisterSchema = Joi.object({
   password: Joi.string()
     .required()
     .pattern(/^[a-zA-Z0-9]{6,}$/),
-  confirmPassword: Joi.string().required().valid(Joi.ref("password")).strip()
-})
+  confirmPassword: Joi.string().required().valid(Joi.ref("password")).strip(),
+});
 
 exports.adminLoginSchema = Joi.object({
   username: Joi.string().required(),
   password: Joi.string().required(),
-})
-
-
+});
