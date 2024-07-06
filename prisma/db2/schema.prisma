@@ -1,0 +1,30 @@
+// prisma/db2/schema.prisma
+
+datasource db2 {
+  provider = "mysql"
+  url      = env("SECOND_DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../db2" // Specify output directory for second client
+}
+
+model ChatRooms {
+  id         Int        @id @default(autoincrement())
+  adminId    Int
+  customerId Int
+  createdAt  DateTime   @default(now()) @db2.Timestamp(0)
+  updatedAt  DateTime   @default(now()) @db2.Timestamp(0)
+  messages   Messages[]
+}
+
+model Messages {
+  id         Int       @id @default(autoincrement())
+  chatRoomId Int
+  senderId   Int
+  senderType String
+  message    String
+  createdAt  DateTime  @default(now()) @db2.Timestamp(0)
+  ChatRoom   ChatRooms @relation(fields: [chatRoomId], references: [id])
+}

@@ -1,0 +1,25 @@
+-- CreateTable
+CREATE TABLE `ChatRooms` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `adminId` INTEGER NOT NULL,
+    `customerId` INTEGER NOT NULL,
+    `createdAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `Messages` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `chatRoomId` INTEGER NOT NULL,
+    `senderId` INTEGER NOT NULL,
+    `senderType` VARCHAR(191) NOT NULL,
+    `message` VARCHAR(191) NOT NULL,
+    `createdAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `Messages` ADD CONSTRAINT `Messages_chatRoomId_fkey` FOREIGN KEY (`chatRoomId`) REFERENCES `ChatRooms`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

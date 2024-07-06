@@ -35,7 +35,7 @@ model Customers {
   password      String
   phone         String
   address       String?
-  driverLicense String     @unique
+  driverLicense String
   totalPoints   Int        @default(0)
   createdAt     DateTime   @default(now()) @db.Timestamp(0)
   updatedAt     DateTime   @default(now()) @updatedAt @db.Timestamp(0)
