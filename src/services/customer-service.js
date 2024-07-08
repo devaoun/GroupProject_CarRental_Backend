@@ -15,7 +15,7 @@ customerService.findCustomerById = (id) =>
 customerService.createCustomer = (data) => prisma.customers.create({ data });
 
 customerService.updateCustomerInfo = (id, data) =>
-  prisma.customers.updateMany({
+  prisma.customers.update({
     data: data,
     where: { customerId: id },
   });
@@ -31,5 +31,7 @@ customerService.addRewardPoints = (customerId, point) =>
   });
 
   customerService.getAllCustomer = () => prisma.customers.findMany()
+
+  customerService.getAllCustomerCount = () => prisma.customers.count()
 
 module.exports = customerService;
