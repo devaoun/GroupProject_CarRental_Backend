@@ -42,7 +42,7 @@ customerController.updateInfo = async (req, res, next) => {
 
     delete data.password; // must be deleted; otherwise, password will be changed
 
-    await customerService.updateCustomerInfo(req.user.id, data);
+    await customerService.updateCustomerInfo(+req.user.customerId, data);
 
     res.status(200).json({ message: "information updated" });
   } catch (error) {
@@ -60,6 +60,5 @@ customerController.getMyBooking = async (req, res, next) => {
     next(error);
   }
 };
-
 
 module.exports = customerController;
