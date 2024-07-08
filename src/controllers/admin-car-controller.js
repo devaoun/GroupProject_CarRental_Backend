@@ -111,4 +111,14 @@ adminCarController.deleteCar = async (req, res, next) => {
     }
 }
 
+adminCarController.getCarCountByStatus = async(req,res,next) => {
+    try {
+        const carStatus = req.params.carStatus 
+        const result = await carsService.getCarCountByStatus(carStatus)
+        res.status(200).json(result)
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = adminCarController

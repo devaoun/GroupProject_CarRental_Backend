@@ -125,7 +125,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\KhunLek\\Desktop\\GroupProject_CarRental_Beckend\\prisma\\db2",
+      "value": "C:\\Users\\PIG_W\\OneDrive\\Desktop\\group-project-car-rental\\server\\prisma\\db2",
       "fromEnvVar": null
     },
     "config": {
