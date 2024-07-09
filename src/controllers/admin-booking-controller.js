@@ -1,4 +1,6 @@
 const bookingService = require("../services/booking-service")
+const carsService = require("../services/cars-service")
+const paymentService = require("../services/payment-service")
 
 
 const adminBookingController = {}
@@ -28,8 +30,15 @@ adminBookingController.updateBookingStatus = async (req, res, next) => {
     try {
         const bookingId = +req.params.bookingId
         const { status } = req.body
-        const result = await bookingService.updateBookingStatus(bookingId, status)
-        console.log(result)
+        if (status === 'cancelled') {
+            const deleteResult = await paymentService.deletePaymentByBookingId(bookingId)
+            console.log(deleteResult)
+        }
+        const updateBookingResult = await bookingService.updateBookingStatus(bookingId, status)
+        if (updateBookingResult.status === 'cancelled') {
+            const updateCarResult = await carsService.updateCar(updateBookingResult.carId, { status: 'available' })
+            console.log(updateCarResult)
+        }
         res.status(200).json({ message: `BookingID : ${bookingId} status updated` })
     } catch (error) {
         next(error)

@@ -17,6 +17,9 @@ paymentService.findPaymentBySessionId = (sessionId) =>
 
 paymentService.getAllPayment = () =>
   prisma.payments.findMany({
+    where : {
+      paymentStatus : 'complete'
+    },
     include: {
       Booking: {
         include: {
@@ -29,7 +32,7 @@ paymentService.getAllPayment = () =>
 paymentService.deletePaymentBySessionId = (sessionId) =>
   prisma.payments.deleteMany({ where: { sessionId: sessionId } });
 
-paymentService.deletePaymentByBookingId = (bookingId) => prisma.payments.delete({
+paymentService.deletePaymentByBookingId = (bookingId) => prisma.payments.deleteMany({
   where: { bookingId }
 })
 
