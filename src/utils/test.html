@@ -1,21 +1,4 @@
-const dayjs = require("dayjs");
-
-function getEmailTemplate(
-  customerName,
-  bookingId,
-  carDetails,
-  startDate,
-  endDate,
-  pickDropTime,
-  pickupLocation,
-  dropOffLocation,
-  totalAmount
-) {
-  const formattedStartDate = dayjs(startDate).format("ddd MMM D, YYYY");
-  const formattedEndDate = dayjs(endDate).format("ddd MMM D, YYYY");
-
-  return `
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <style>
@@ -110,8 +93,3 @@ function getEmailTemplate(
     </div>
   </body>
 </html>
-
-  `;
-}
-
-module.exports = getEmailTemplate;
