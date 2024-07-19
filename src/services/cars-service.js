@@ -77,6 +77,7 @@ carsService.findCarByCarId = (id) =>
       carId: id,
     },
     include: {
+      Bookings : true,
       CarModel: {
         include: {
           CarType: true,
@@ -91,8 +92,13 @@ carsService.getAllCar = () => prisma.cars.findMany(
     include: {
       Branch: true,
       CarModel: true,
+      Bookings: true
     }
   }
 )
+
+carsService.getCarCountByStatus = (status) => prisma.cars.count({where : {status}})
+
+carsService.deleteCar = (carId) => prisma.cars.delete({ where: { carId } })
 
 module.exports = carsService;
